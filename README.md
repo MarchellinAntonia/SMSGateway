@@ -3,7 +3,7 @@ Learn how to build Java Dekstop App for SMS gateway using GSM modem
 
 ## Getting Started
 
-These app send bulk SMS using GSM Modem (tested using Wavecom and Syscom MP8P) can calculate the nearest neighbor coordinate using euclidian distance equation, given some coordinate in ArrayList then system will calculate distance each coordinate with current location.
+These app send bulk SMS using GSM Modem (tested using Wavecom and Syscom MP8P) 
 in this project there is 3 main class:
 - SMSPanel (the Main Interface)
 - SMSSender (class that contain methods for send SMS)
