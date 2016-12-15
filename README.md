@@ -38,6 +38,14 @@ AT+CMGF=1
 AT+CMGS="+31638740161" //replace with recipient number
 
 ```
+if you using netbeans, chang run setting by right click on project -> properties -> Run. in VM Options add this -Djava.library.path=/usr/lib/jni then click OK
+<br /><br />
+if you can't detect port then the port might be not granted permission, use this command in terminal
+```
+sudo chmod 666 /dev/ttyUSB0
+
+```
+or change /dev/ttyUSB0 with your connected port
 
 ### Useful Tutorial
 - Minicom Installation and Configuration (Linux)
@@ -59,3 +67,12 @@ http://www.smssolutions.net/tutorials/gsm/sendsmsat/
 * **Marchellin Antonia**
 
 ## Screenshot
+* panel to send sms <br />
+<img src="https://cloud.githubusercontent.com/assets/12492522/21212439/3fe0c758-c2bf-11e6-8c3f-5db5e2c56390.png" width="500">
+<br />
+* panel to check inbox <br />
+<img src="https://cloud.githubusercontent.com/assets/12492522/21212440/3fe1b88e-c2bf-11e6-9169-5274eaf7794b.png" width="500">
+<br />
+* panel to check outbox <br />
+<img src="https://cloud.githubusercontent.com/assets/12492522/21212438/3fe09c42-c2bf-11e6-96ed-41d3bbc5bb30.png" width="500">
+<br />
