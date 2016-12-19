@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SMSsender;
+package controller;
 
 import controller.ConnectionManager;
-import controller.DatabaseCRUD;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,11 +60,13 @@ public class SMSCommand {
         ConnectionManager conn = new ConnectionManager();
         conn.connect();
         
+        System.out.println("masuk insert outbox");
+        
         String query = "insert into outbox(DestinationNumber, TextDecoded, creatorID)VALUES(?,?,?)";
         PreparedStatement stmt = conn.con.prepareStatement(query);
         stmt.setString(1, msg.getRecipient());
         stmt.setString(2, msg.getMessages());
-        stmt.setString(3, "");
+        stmt.setString(3, "Gammu");
         stmt.executeUpdate();
         conn.disconnect();
     }
@@ -81,7 +82,7 @@ public class SMSCommand {
 
             conn.disconnect();
         } catch (SQLException ex) {
-            Logger.getLogger(DatabaseCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SMSCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -97,7 +98,7 @@ public class SMSCommand {
 
             conn.disconnect();
         } catch (SQLException ex) {
-            Logger.getLogger(DatabaseCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SMSCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

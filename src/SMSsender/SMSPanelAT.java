@@ -33,7 +33,7 @@ import model.Messages;
  *
  * @author chellin
  */
-public class SMSPanel extends javax.swing.JFrame {
+public class SMSPanelAT extends javax.swing.JFrame {
 
 //    static Enumeration portList;
 //    static CommPortIdentifier portId;
@@ -52,7 +52,7 @@ public class SMSPanel extends javax.swing.JFrame {
     /**
      * Creates new form SMSPanel
      */
-    public SMSPanel() {
+    public SMSPanelAT() {
         initComponents();
         System.out.println("masuk constructor");
 //        portCombo = new JComboBox<>();
@@ -101,6 +101,9 @@ public class SMSPanel extends javax.swing.JFrame {
         refreshOutboxButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        portCombo = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        connectButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -266,6 +269,17 @@ public class SMSPanel extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
         jLabel2.setText("SMS Gateway Java");
 
+        portCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel1.setText("Select Port: ");
+
+        connectButton.setText("CONNECT");
+        connectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                connectButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -274,13 +288,26 @@ public class SMSPanel extends javax.swing.JFrame {
                 .addContainerGap(146, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(134, 134, 134))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(portCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(connectButton)
+                .addGap(46, 46, 46))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(portCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(connectButton))
+                .addContainerGap(334, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -307,6 +334,42 @@ public class SMSPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
         checkInbox();
     }//GEN-LAST:event_refreshInboxButtonActionPerformed
+
+    private void connectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectButtonActionPerformed
+        // TODO add your handling code here:
+//        portList = CommPortIdentifier.getPortIdentifiers();
+//
+//        while (portList.hasMoreElements()) {
+//            portId = (CommPortIdentifier) portList.nextElement();
+//            if (portId.getName().equals(portCombo.getSelectedItem().toString())) {
+//                try {
+//                    serialPort = (SerialPort) portId.open("ttyUSB0", 2000);
+//                    outputStream = serialPort.getOutputStream();
+//                    inputStream = serialPort.getInputStream();
+//
+//                    serialPort.setSerialPortParams(115200,
+//                            SerialPort.DATABITS_8,
+//                            SerialPort.STOPBITS_1,
+//                            SerialPort.PARITY_NONE);
+//                } catch (PortInUseException e) {
+//                    System.out.println("err");
+//                } catch (IOException ex) {
+//                    Logger.getLogger(SMSsender.class.getName()).log(Level.SEVERE, null, ex);
+//                } catch (UnsupportedCommOperationException ex) {
+//                    Logger.getLogger(SMSsender.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//
+//                JOptionPane.showMessageDialog(this, "Connected to Port: " + portCombo.getSelectedItem().toString());
+
+//            }
+//        }
+//        File file = new File("/var/lock/LCK..ttyUSB"+portCombo.getSelectedItem().toString().substring(portCombo.getSelectedItem().toString().length()-1));
+//        if(file.delete()){
+//            System.out.println(file.getName() + " is deleted!");
+//        }else{
+//            System.out.println("Delete operation is failed.");
+//        }
+    }//GEN-LAST:event_connectButtonActionPerformed
 
     private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
         // TODO add your handling code here:
@@ -350,7 +413,7 @@ public class SMSPanel extends javax.swing.JFrame {
         try {
             messagesList = SMSCommand.getAllInbox();
         } catch (SQLException ex) {
-            Logger.getLogger(SMSPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SMSPanelAT.class.getName()).log(Level.SEVERE, null, ex);
         }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < messagesList.size(); i++) {
@@ -370,7 +433,7 @@ public class SMSPanel extends javax.swing.JFrame {
         try {
             messagesList = SMSCommand.getAllOutbox();
         } catch (SQLException ex) {
-            Logger.getLogger(SMSPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SMSPanelAT.class.getName()).log(Level.SEVERE, null, ex);
         }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < messagesList.size(); i++) {
@@ -420,7 +483,7 @@ public class SMSPanel extends javax.swing.JFrame {
 
             }
         } catch (IOException ex) {
-            Logger.getLogger(SMSPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SMSPanelAT.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return line;
@@ -443,7 +506,7 @@ public class SMSPanel extends javax.swing.JFrame {
             }
 //            while (br.readLine() != )
         } catch (IOException ex) {
-            Logger.getLogger(SMSPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SMSPanelAT.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (br != null) {
             try {
@@ -494,7 +557,7 @@ public class SMSPanel extends javax.swing.JFrame {
         try {
             SMSCommand.insertOutbox(message);
         } catch (SQLException ex) {
-            Logger.getLogger(SMSPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SMSPanelAT.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -515,27 +578,30 @@ public class SMSPanel extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SMSPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SMSPanelAT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SMSPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SMSPanelAT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SMSPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SMSPanelAT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SMSPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SMSPanelAT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SMSPanel().setVisible(true);
+                new SMSPanelAT().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton connectButton;
     private javax.swing.JPanel inboxPanel;
     private javax.swing.JTextArea inboxTextArea;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -551,6 +617,7 @@ public class SMSPanel extends javax.swing.JFrame {
     private javax.swing.JTextArea messagesTextArea;
     private javax.swing.JPanel outboxPanel;
     private javax.swing.JTextArea outboxTextArea;
+    private javax.swing.JComboBox<String> portCombo;
     private javax.swing.JTextArea recipientTextArea;
     private javax.swing.JButton refreshInboxButton;
     private javax.swing.JButton refreshOutboxButton;

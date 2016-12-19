@@ -16,6 +16,9 @@ import javax.swing.JOptionPane;
 public class ConnectionManager {
 
     private String driver = "com.mysql.jdbc.Driver";
+//    private String url = "jdbc:mysql://172.16.200.3/sms?autoReconnect=true&useSSL=false";
+//    private String username = "smsuser";
+//    private String password = "Kuecubit@gr33nt3a";
     private String url = "jdbc:mysql://localhost/sms?autoReconnect=true&useSSL=false";
     private String username = "chellin";
     private String password = "Kosongin@474";
@@ -26,6 +29,8 @@ public class ConnectionManager {
             Class.forName(driver).newInstance();
             //Buat object connection
             con = DriverManager.getConnection(url, username, password);
+            
+            System.out.println("logging in");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error occoured when LogIn" + e);
