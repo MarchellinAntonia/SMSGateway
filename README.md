@@ -1,5 +1,5 @@
 # SMSGateway
-Learn how to build Java Dekstop App for SMS gateway using GSM modem
+Building Java Dekstop App for SMS gateway using GSM modem
 
 ## Getting Started
 
